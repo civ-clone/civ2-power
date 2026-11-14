@@ -6,8 +6,8 @@ import Unit from '@civ-clone/core-unit/Unit';
 import attackAndDefence from '@civ-clone/base-power/lib/strength';
 
 // Civilization II's military strength, which its AI weighs other civilizations by: the attack and defence of every
-//  unit but nuclear ones (OpenCiv2 `src/auto/ai.cpp:1192` and `:1283-1287`, which skip unit types attacking 99, the
-//  nuclear missile): here those that `Detonates`. Civ2 adds up each type's listed attack and defence; this adds up each
+//  unit but nuclear ones (OpenCiv2 `src/auto/ai.cpp` `ai_assess_count_units`,
+//  richardpenman/civ2@49f26ec, which skips unit types attacking 99, the nuclear missile): here those that `Detonates`. Civ2 adds up each type's listed attack and defence; this adds up each
 //  unit's, as civ1-power does.
 export const getRules: () => MilitaryStrength[] = (): MilitaryStrength[] => [
   new MilitaryStrength(

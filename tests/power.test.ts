@@ -5,6 +5,7 @@ import {
 import Detonates from '@civ-clone/base-unit-trait-detonates/Detonates';
 import Effect from '@civ-clone/core-rule/Effect';
 import Player from '@civ-clone/core-player/Player';
+import Rank from '@civ-clone/core-power/Rules/Rank';
 import RuleRegistry from '@civ-clone/core-rule/RuleRegistry';
 import Unit from '@civ-clone/core-unit/Unit';
 import UnitTraits from '@civ-clone/core-unit/Rules/UnitTraits';
@@ -55,8 +56,15 @@ const setUp = (gold: number) => {
 };
 
 describe('civ2-power', () => {
-  it("ranks a player by Civ2's terms: 3 × advances + 8 × citizens + gold / 32, and no units", () => {
+  it("ranks a player by Civ2's terms: 3 × advances + 8 × citizens + gold / 32", () => {
     const { player, ruleRegistry } = setUp(100);
+
+    // Three terms and nothing else: no unit term, which Civ2 works out but never adds in.
+    expect(ruleRegistry.get(Rank).map((rule) => rule.id())).eql([
+      'civ2-power:player/rank/advances',
+      'civ2-power:player/rank/citizens',
+      'civ2-power:player/rank/gold',
+    ]);
 
     // 3 × 7 = 21, 8 × 8 = 64, 100 / 32 = 3
     expect(rank(player, ruleRegistry)).equal(21 + 64 + 3);

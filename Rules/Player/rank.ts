@@ -25,11 +25,11 @@ import Player from '@civ-clone/core-player/Player';
 import Rank from '@civ-clone/core-power/Rules/Rank';
 
 // Civilization II's power, worked out for every civilization each turn to rank them (OpenCiv2 `src/auto/civ.cpp`
-//  `civ_update_power_ranks`, :3027):
+//  `civ_update_power_ranks`, richardpenman/civ2@49f26ec):
 //
 //    3 × advances + 8 × citizens + gold / 32
 //
-// Units don't count: the function adds up a military power per unit type (`civ.cpp:3031-3048`) but never adds it in.
+// Units don't count: the function adds up a military power per unit type but never adds it in.
 //  Civ2 counts the advances it has recorded for the civilization (`num_advances`); this counts every advance known.
 export const getRules: (
   cityRegistry?: CityRegistry,
